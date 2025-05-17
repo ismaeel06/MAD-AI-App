@@ -1,0 +1,28 @@
+name: flutter_web_auth_2
+description: Patched version of flutter_web_auth_2 with fixed AGP compatibility
+version: 3.1.2
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.3.0"
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.linusu.flutter_web_auth_2
+        pluginClass: FlutterWebAuth2Plugin
+      ios:
+        pluginClass: FlutterWebAuth2Plugin
+      web:
+        pluginClass: FlutterWebAuth2Plugin
+        fileName: flutter_web_auth_2_web.dart
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  flutter_web_auth_2_platform_interface:
+    path: ../flutter_web_auth_2_platform_interface
+  window_to_front: ^0.0.3

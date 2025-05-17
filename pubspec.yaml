@@ -1,23 +1,22 @@
 name: ai_assistant
-description: An AI Assistant (ChatBot, Image Generator & Language Translator) App Based on ChatGPT developed by Harsh H. Rajpurohit 
+description: An AI Assistant (ChatBot, Image Generator & Language Translator) App Based on ChatGPT developed by Harsh H. Rajpurohit
 
-publish_to: 'none' 
+publish_to: "none"
 
 # App Version
 version: 1.0.2+2
 
 environment:
-  sdk: '>=3.4.3 <4.0.0'
+  sdk: ">=3.4.3 <4.0.0"
 
 # Dependencies
 dependencies:
   flutter:
     sdk: flutter
 
-  # App Write Database (For dynamically getting API Key)  
-  appwrite: ^12.0.4
-  # appwrite: 
-  #   path: ./appwrite
+  # App Write Database (For dynamically getting API Key)
+  appwrite:
+    path: ./appwrite-15.0.2
 
   # iOS Styled Icons
   cupertino_icons: ^1.0.8
@@ -49,21 +48,19 @@ dependencies:
   # For AI Image Generation
   dart_openai: ^5.1.0
   cached_network_image: ^3.3.1
-  
+
   # Google Gemini Ai Integration
   google_generative_ai: ^0.4.3
 
   # For Google Language Translate
   translator_plus: ^1.0.1
-
   # For Saving Image to Gallery
-  gallery_saver_updated: ^3.0.0
+  # Temporarily disabled due to compatibility issues
+  # gallery_saver_updated: ^3.0.0
 
   # For Sharing Image
-  share_plus: ^9.0.0
-
-  # Facebook Ads
-  easy_audience_network: ^0.0.6
+  share_plus: 11.0.0 # Facebook Ads - Temporarily commented out due to compatibility issues
+  # easy_audience_network: ^0.0.7
 
 dev_dependencies:
   flutter_test:
@@ -76,7 +73,6 @@ dev_dependencies:
   # icons_launcher: ^2.1.7
 
 flutter:
-
   # Enables Material Design
   uses-material-design: true
 

@@ -1,0 +1,9 @@
+// This file is to handle plugins that don't specify a namespace
+
+ext {
+    // Map of plugins that need namespaces
+    flutterPluginsNamespaces = [
+        'gallery_saver_updated': 'com.example.gallery_saver_updated',
+        'easy_audience_network': 'com.example.easy_audience_network'
+    ]
+}

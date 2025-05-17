@@ -25,25 +25,31 @@ if (flutterVersionName == null) {
 
 android {
     namespace = "com.harshRajpurohit.ai_assistant"
-    compileSdk = 34
-    ndkVersion = flutter.ndkVersion
-
+    compileSdk = 35
+    // Remove reference to flutter.ndkVersion as it doesn't exist in this Flutter version
+    
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-
-    defaultConfig {
+    
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+      defaultConfig {
         applicationId = "com.harshRajpurohit.ai_assistant"
         minSdk = 23
-        targetSdk = flutter.targetSdkVersion
+        targetSdk = 33 // Set a specific target SDK version
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
     }
-
+    
     buildTypes {
         release {
             signingConfig = signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            shrinkResources true
         }
     }
 }

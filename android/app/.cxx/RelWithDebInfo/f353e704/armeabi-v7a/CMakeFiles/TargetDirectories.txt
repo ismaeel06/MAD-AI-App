@@ -1,0 +1,2 @@
+D:/Ai-Assistant-In-Flutter-Using-ChatGpt/android/app/.cxx/RelWithDebInfo/f353e704/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/Ai-Assistant-In-Flutter-Using-ChatGpt/android/app/.cxx/RelWithDebInfo/f353e704/armeabi-v7a/CMakeFiles/rebuild_cache.dir

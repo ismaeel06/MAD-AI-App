@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:dart_openai/dart_openai.dart';
 import 'package:flutter/material.dart';
-import 'package:gallery_saver_updated/gallery_saver.dart';
+// Temporarily disabled: import 'package:gallery_saver_updated/gallery_saver.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
 import 'package:path_provider/path_provider.dart';
@@ -56,14 +56,18 @@ class ImageController extends GetxController {
       final file = await File('${dir.path}/ai_image.png').writeAsBytes(bytes);
 
       log('filePath: ${file.path}');
-      //save image to gallery
-      await GallerySaver.saveImage(file.path, albumName: appName)
-          .then((success) {
-        //hide loading
-        Get.back();
 
-        MyDialog.success('Image Downloaded to Gallery!');
-      });
+      // Gallery saver is temporarily disabled
+      // Save to downloads directly and notify user
+      final downloadsDir = await getExternalStorageDirectory();
+      final downloadFile = await File(
+              '${downloadsDir?.path}/ai_image_${DateTime.now().millisecondsSinceEpoch}.png')
+          .writeAsBytes(bytes);
+
+      //hide loading
+      Get.back();
+
+      MyDialog.success('Image saved to: ${downloadFile.path}');
     } catch (e) {
       //hide loading
       Get.back();
