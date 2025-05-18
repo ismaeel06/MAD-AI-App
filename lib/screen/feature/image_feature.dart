@@ -81,6 +81,7 @@ class _ImageFeatureState extends State<ImageFeature> {
               margin: EdgeInsets.symmetric(vertical: mq.height * .015),
               alignment: Alignment.center,
               child: Obx(() => _aiImage())),
+
           Obx(() => _c.imageList.isEmpty
               ? const SizedBox()
               : SingleChildScrollView(
@@ -93,10 +94,6 @@ class _ImageFeatureState extends State<ImageFeature> {
                         .map((e) => InkWell(
                               onTap: () {
                                 _c.url.value = e;
-                                // Ensure status is updated
-                                if (_c.status.value != Status.complete) {
-                                  _c.status.value = Status.complete;
-                                }
                               },
                               child: ClipRRect(
                                 borderRadius:
@@ -104,16 +101,8 @@ class _ImageFeatureState extends State<ImageFeature> {
                                 child: CachedNetworkImage(
                                   imageUrl: e,
                                   height: 100,
-                                  width: 150,
-                                  fit: BoxFit.cover,
                                   errorWidget: (context, url, error) =>
-                                      Container(
-                                    height: 100,
-                                    width: 150,
-                                    color: Colors.grey.shade300,
-                                    child: Icon(Icons.broken_image,
-                                        color: Colors.grey.shade700),
-                                  ),
+                                      const SizedBox(),
                                 ),
                               ),
                             ))
@@ -136,41 +125,8 @@ class _ImageFeatureState extends State<ImageFeature> {
             Lottie.asset('assets/lottie/ai_play.json', height: mq.height * .3),
           Status.complete => CachedNetworkImage(
               imageUrl: _c.url.value,
-              fit: BoxFit.cover,
               placeholder: (context, url) => const CustomLoading(),
-              errorWidget: (context, url, error) {
-                // If there's an error loading the current image, try the next one in the list if available
-                if (_c.imageList.length > 1 &&
-                    _c.imageList.first == _c.url.value) {
-                  // Wait a moment, then use the next image in the list
-                  Future.delayed(const Duration(milliseconds: 100), () {
-                    _c.url.value = _c.imageList[1];
-                  });
-                  return const CustomLoading();
-                }
-
-                return Container(
-                  padding: const EdgeInsets.all(12),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.error_outline, size: 32, color: Colors.red),
-                      SizedBox(height: 8),
-                      Text("Couldn't load the image",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.error)),
-                      SizedBox(height: 10),
-                      Text("Try a different search term",
-                          textAlign: TextAlign.center),
-                      SizedBox(height: 20),
-                      ElevatedButton(
-                          onPressed: () => _c.searchAiImage(),
-                          child: Text("Try Again"))
-                    ],
-                  ),
-                );
-              },
+              errorWidget: (context, url, error) => const SizedBox(),
             ),
           Status.loading => const CustomLoading()
         },
